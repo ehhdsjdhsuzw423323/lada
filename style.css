@@ -1,0 +1,199 @@
+ :root {
+            --c-love: #ff88e1;
+            --c-magic: #a78bfa;
+            --c-passion: #ff7e5f;
+            --c-dream: #feb47b;
+            --gradient: linear-gradient(60deg, var(--c-magic), var(--c-love), var(--c-passion), var(--c-dream), var(--c-magic));
+            --ease-elastic: linear(0, 0.186 2.1%, 0.778 7.2%, 1.027 9.7%, 1.133, 1.212, 1.264, 1.292 15.4%, 1.296, 1.294, 1.285, 1.269 18.9%, 1.219 20.9%, 1.062 25.8%, 0.995 28.3%, 0.944 31.1%, 0.93, 0.921, 0.92 35.7%, 0.926, 0.94 39.7%, 1.001 47%, 1.014, 1.021 52.4%, 1.02 56.4%, 1 65.5%, 0.994 70.7%, 1.001 88.4%, 1);
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes pop-in {
+            from { transform: scale(0.7) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        @keyframes text-gradient {
+            to { background-position: 200% center; }
+        }
+        @keyframes fade-in {
+            to { opacity: 1; backdrop-filter: blur(10px); }
+        }
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(0.9); }
+            20%, 40% { transform: scale(1.1); }
+        }
+
+        body {
+            background-color: #000000;
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        .star {
+            position: fixed;
+            background-color: #fff;
+            border-radius: 50%;
+            animation-name: twinkle;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            z-index: -1;
+            pointer-events: none;
+            box-shadow: 0 0 8px #fff, 0 0 12px var(--c-magic), 0 0 16px var(--c-love);
+        }
+
+        .scroll-container {
+            min-height: 95vh;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fade-in linear forwards;
+            animation-timeline: view();
+            animation-range: entry 20% cover 30%;
+        }
+
+        .animated-text {
+            font-weight: 700;
+            font-size: calc(1.5rem + 4vmin);
+            line-height: 1.2;
+            text-wrap: balance;
+            max-width: 25ch;
+            color: transparent;
+            background-image: var(--gradient);
+            background-size: 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            transform: scale(0.7);
+            opacity: 0;
+            animation: pop-in 800ms var(--ease-elastic) forwards, text-gradient 2s ease-in-out forwards;
+            animation-timeline: view();
+            animation-range: entry 30% cover 40%;
+        }
+        
+        .emoji-fix {
+            -webkit-text-fill-color: initial;
+            background: none;
+            -webkit-background-clip: border-box;
+            background-clip: border-box;
+        }
+
+        .animated-text.quote {
+            font-family: 'Rouge Script', cursive;
+            font-size: calc(2rem + 6vmin);
+            font-weight: 400;
+        }
+
+        .animated-text.quote.ua {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+
+        }
+
+        .animated-text.small {
+            font-size: calc(0.8rem + 1vmin);
+            font-weight: 400;
+            color: #94a3b8;
+            background: none;
+        }
+        .animated-text.number {
+            font-size: calc(4rem + 12vmin);
+            font-weight: 800;
+        }
+        .glass-card {
+            background: rgba(26, 22, 53, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: pop-in 800ms var(--ease-elastic) forwards;
+            animation-timeline: view();
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(20px) scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px var(--c-magic);
+        }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%; max-width: 500px; }
+        @media (min-width: 768px) { .stats-grid { max-width: 800px; grid-template-columns: repeat(3, 1fr); } }
+        
+        .stat-card h3 { font-size: 1rem; color: var(--c-magic); margin-bottom: 0.5rem; }
+        .stat-card p { font-size: 3rem; font-weight: 800; line-height: 1; background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; background-size: 400%; }
+
+        .chat-container { width: 100%; max-width: 500px; padding: 0 1rem; display: flex; flex-direction: column; }
+        .chat-bubble { padding: 1rem 1.5rem; border-radius: 1.5rem; max-width: 80%; margin-bottom: 1rem; opacity: 0; animation: pop-in 800ms var(--ease-elastic) forwards; animation-timeline: view(); }
+        .chat-bubble.lada { background-color: #37304f; border-bottom-left-radius: 0.3rem; align-self: flex-start; text-align: left; animation-range: entry 50% cover 50%; }
+        .chat-bubble.tim { background-image: linear-gradient(135deg, #8e44ad, #5b21b6); border-bottom-right-radius: 0.3rem; align-self: flex-end; text-align: left; animation-range: entry 50% cover 50%; }
+        
+        .star-button {
+            background-image: var(--gradient);
+            background-size: 200% auto;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: none;
+            box-shadow: 0 5px 25px rgba(167, 139, 250, 0.4);
+            animation-timeline: view();
+            animation: pop-in 1s forwards;
+        }
+        .star-button:hover { transform: scale(1.1); box-shadow: 0 10px 40px rgba(167, 139, 250, 0.6); background-position: right center; }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(3, 0, 20, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            z-index: 1000;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: #1a1635;
+            padding: 1rem;
+            border-radius: 1rem;
+            width: 90%;
+            height: 80%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0.5rem;
+        }
+        .modal-close {
+            align-self: flex-end;
+            background: none; border: none;
+            color: white; font-size: 1.5rem;
+            cursor: pointer; padding: 0.5rem;
+            line-height: 1;
+        }
+        
+        .final-heart { font-size: calc(2rem + 5vmin); animation: heart-beat 1.2s ease-in-out infinite; }
+
+        /* Für meine Lada */
