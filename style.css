@@ -65,16 +65,8 @@
             line-height: 1.2;
             text-wrap: balance;
             max-width: 25ch;
-            color: transparent;
-            background-image: var(--gradient);
-            background-size: 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
+            color: red;
             transform: scale(0.7);
-            opacity: 0;
-            animation: pop-in 800ms var(--ease-elastic) forwards, text-gradient 2s ease-in-out forwards;
-            animation-timeline: view();
-            animation-range: entry 30% cover 40%;
         }
         
         .emoji-fix {
@@ -195,5 +187,6 @@
         }
         
         .final-heart { font-size: calc(2rem + 5vmin); animation: heart-beat 1.2s ease-in-out infinite; }
+
 
         /* Für meine Lada */
